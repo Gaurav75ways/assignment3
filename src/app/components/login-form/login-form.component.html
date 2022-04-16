@@ -1,0 +1,28 @@
+<div class="wrapper" fxLayout = "column"  fxLayoutGap="2%" fxLayoutAlign="center center" style="height:100vh">
+    <mat-card class="login-card">
+        <mat-card-title>
+            Login
+        </mat-card-title>
+        <div fxLayout="column">
+            <div class="container" fxFlex>
+                <mat-form-field >
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Enter your registered Email">
+                </mat-form-field>
+            </div>
+            <div class="container" fxFlex>
+                <mat-form-field >
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput placeholder="Enter your Password">
+                </mat-form-field>
+            </div>
+        </div>
+        <mat-card-actions>
+            <button mat-raised-button color="primary">Login</button>
+            <div style="margin-top:1em">
+                <p>Don't have an account?<a routerLink="/register-form" routerLinkActive="active" style="text-decoration: none; color:#ffa4c9"> Register! </a></p>
+              </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
