@@ -11,6 +11,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PokeAPIService } from './table-data.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [PokeAPIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

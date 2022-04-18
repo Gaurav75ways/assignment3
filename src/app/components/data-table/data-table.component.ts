@@ -23,6 +23,7 @@ export class DataTableComponent implements AfterViewInit {
 
   constructor(private dataObj:TableDataService) {
     this.dataSource = new DataTableDataSource();
+
     dataObj.tableData().subscribe((data)=>{
     console.warn('data',data)
     this.exampleData=data;}
