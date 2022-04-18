@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators'
 
 const POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon/'
 
-
 export interface Pokemon {
   name: string,
   url: string

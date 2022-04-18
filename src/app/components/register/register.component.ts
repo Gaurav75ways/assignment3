@@ -24,9 +24,9 @@ export class RegisterComponent implements OnInit {
               Validators.minLength(8)
             ]],
         confirmPassword: ["",[Validators.required]],
-        website:["", Validators.required],
-        college:["", Validators.required],
-        gender: ["", Validators.required]
+        // website:["", Validators.required],
+        // college:["", Validators.required],
+        // gender: ["", Validators.required]
     },
     {
       validator:ConfirmedValidator('password', 'confirmPassword')
