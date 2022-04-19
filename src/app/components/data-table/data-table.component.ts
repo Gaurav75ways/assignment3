@@ -1,38 +1,37 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, ViewChild } from '@angular/core';
+import { PostService } from 'src/app/table-data.service';
+import { todo } from 'src/app/table-data.service';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { DataTableDataSource, DataTableItem } from './data-table-datasource';
-
-import { TableDataService } from 'src/app/services/table-data-service.service';
-
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+/**
+ * @title Basic use of `<table mat-table>`
+ */
 @Component({
   selector: 'app-data-table',
+  styleUrls: ['./data-table.component.scss'],
   templateUrl: './data-table.component.html',
-  styleUrls: ['./data-table.component.scss']
 })
-export class DataTableComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<DataTableItem>;
-  dataSource: DataTableDataSource;
-  exampleData:any;
+export class dataTable {
+  // data: todo[] = [];
+  data: any;
+  columnsToDisplay: [string, string] = ['id', 'title'];
+  dataSource: MatTableDataSource<any[]> = new MatTableDataSource<any[]>([]);
+  
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
+  @ViewChild(MatSort)
+  sort: MatSort;
+  posts = {};
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  constructor(private post: PostService) {
+    this.post.getPostData().subscribe((x) => {
+      console.warn(x);
+      this.data = x;
 
-  constructor(private dataObj:TableDataService) {
-    this.dataSource = new DataTableDataSource();
-
-    dataObj.tableData().subscribe((data)=>{
-    console.warn('data',data)
-    this.exampleData=data;}
-    );
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+      this.data = new MatTableDataSource<todo>(x);
+      this.data.sort = this.sort;
+      this.data.paginator = this.paginator;
+    });
   }
 }

@@ -9,10 +9,10 @@ import { MaterialModule } from './core/material.module';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DialogComponent } from './components/dialog/dialog.component';
-import { DataTableComponent } from './components/data-table/data-table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PokeAPIService } from './table-data.service';
+import { PostService } from './table-data.service';
+import { dataTable } from './components/data-table/data-table.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +21,9 @@ import { PokeAPIService } from './table-data.service';
     RegisterComponent,
     DashboardComponent,
     DialogComponent,
-    DataTableComponent,
+    dataTable,
   ],
-  entryComponents:[DialogComponent],
+  entryComponents: [DialogComponent],
   imports: [
     BrowserModule,
     MaterialModule,
@@ -31,9 +31,9 @@ import { PokeAPIService } from './table-data.service';
     BrowserAnimationsModule,
     FlexLayoutModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [PokeAPIService],
-  bootstrap: [AppComponent]
+  providers: [PostService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
