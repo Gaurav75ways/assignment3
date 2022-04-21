@@ -1,25 +1,16 @@
-.login-card {
-  width: 800px;
-  max-width: calc(80% - 20px);
-  margin: 5em 0;
+.wrapper, .login-card{
+  height:100%;
 }
-.form-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  align-items: center;
-}
-.mat-form-field {
-  margin-left: 1em;
-}
-.mat-card-actions {
-  margin-left: 1em;
-}
-.checkbox-div{
-    padding: 1em;
+
+.login-card{
+  display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    justify-content: space-between;
-}
-.mat-radio-button ~ .mat-radio-button {
-    margin-left: 16px;
 }

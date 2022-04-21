@@ -8,6 +8,7 @@
     "strict": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
+    "noImplicitAny": false,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
@@ -18,11 +19,9 @@
     "target": "es2017",
     "module": "es2020",
     "noPropertyAccessFromIndexSignature": false,
-    "lib": [
-      "es2020",
-      "dom"
-    ],
-    "strictPropertyInitialization": false
+    "lib": ["es2020", "dom"],
+    "strictPropertyInitialization": false,
+    "typeRoots": ["node_modules/@types", "src/alertifytype.d.ts"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
