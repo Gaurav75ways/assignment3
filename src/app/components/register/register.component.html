@@ -49,6 +49,7 @@
                 placeholder="Enter your Email"
               />
             </mat-form-field>
+
             <br />
             <span *ngIf="email && email.invalid && email.touched">
               Please enter a valid email
@@ -111,24 +112,29 @@
               </div>
             </div>
 
-            <mat-form-field>
-              <mat-label>Website</mat-label>
-              <input
-                type="url"
-                matInput
-                placeholder="Enter website url"
-                formControlName="website"
-              />
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>College</mat-label>
-              <mat-select formControlName="college">
-                <mat-option value="none">None</mat-option>
-                <mat-option value="a">College A</mat-option>
-                <mat-option value="b">College B</mat-option>
-                <mat-option value="c">College C</mat-option>
-              </mat-select>
-            </mat-form-field>
+            <div>
+              <mat-form-field>
+                <mat-label>Website</mat-label>
+                <input
+                  type="url"
+                  matInput
+                  placeholder="Enter website url"
+                  formControlName="website"
+                />
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field>
+                <mat-label>College</mat-label>
+                <mat-select formControlName="college">
+                  <mat-option value="none">None</mat-option>
+                  <mat-option value="College A">College A</mat-option>
+                  <mat-option value="College B">College B</mat-option>
+                  <mat-option value="College C">College C</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
 
             <div class="checkbox-div">
               <h3>Select your strengths</h3>
@@ -140,12 +146,12 @@
               >
             </div>
 
-              <h3>Select gender</h3>
-              <mat-radio-group formControlName="gender">
-                <mat-radio-button value="male">Male</mat-radio-button>
-                <mat-radio-button value="female">Female</mat-radio-button>
-                <mat-radio-button value="other">Other</mat-radio-button>
-              </mat-radio-group>
+            <h3>Select gender</h3>
+            <mat-radio-group formControlName="gender">
+              <mat-radio-button value="Male">Male</mat-radio-button>
+              <mat-radio-button value="Female">Female</mat-radio-button>
+              <mat-radio-button value="Other">Other</mat-radio-button>
+            </mat-radio-group>
             <div>
               <mat-form-field>
                 <mat-label>Choose your DOB</mat-label>
@@ -175,12 +181,7 @@
               </mat-form-field>
             </div>
           </div>
-
-            
-
-        <div fxLayout="column">
-          
-
+          <div fxLayout="column">
             <!-- image input -->
             <div>
               <mat-card class="image-card">

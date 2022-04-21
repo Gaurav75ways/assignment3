@@ -1,3 +1,18 @@
+.form-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  place-self: center;
+}
+.checkbox-div{
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}
+
 .wrapper, .login-card{
   height:100%;
 }

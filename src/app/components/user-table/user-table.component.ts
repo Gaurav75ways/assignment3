@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -10,13 +10,19 @@ import { UserTableService } from 'src/app/services/user-table.service';
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss'],
 })
-export class UserTableComponent {
+export class UserTableComponent implements OnInit{
   data: User;
-  columnsToDisplay: [string, string, string, string] = [
+  columnsToDisplay: [string, string, string, string, string,string,string,string,string, string ] = [
     'firstName',
     'lastName',
     'email',
+    'gender',
+    'college',
+    'dob',
     'website',
+    'strength_A',
+    'strength_B',
+    'remove'
   ];
   dataSource: MatTableDataSource<any[]> = new MatTableDataSource<any[]>([]);
 
@@ -24,20 +30,22 @@ export class UserTableComponent {
   paginator: MatPaginator;
   @ViewChild(MatSort)
   sort: MatSort;
-  posts = {};
 
-  constructor(private userData: UserTableService) {
-    // this.post.getPostData().subscribe((x) => {
-    //   console.warn(x);
-    //   this.data = x;
-    //   this.data = new MatTableDataSource<todo>(x);
-    //   this.data.sort = this.sort;
-    //   this.data.paginator = this.paginator;
-    // });
-  }
-  public dataArray: string[] = [];
+  constructor(private userData: UserTableService) {}
+  public dataArray: any[] = [];
   ngOnInit() {
     this.dataArray = this.userData.getData();
-    console.log(this.dataArray);
+
+  }
+  //delete user
+  deleteUser(item_email: string) {
+    for(let i = 0; i<this.dataArray.length; i++){
+      if(this.dataArray[i].email == item_email){
+        this.dataArray.splice(i,1);
+        localStorage.removeItem('users');
+        localStorage.setItem('Users', JSON.stringify(this.dataArray));
+        this.ngOnInit();
+      }
+    }
   }
 }

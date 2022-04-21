@@ -5,7 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class UserTableService {
   getData() {
-    const dataArray: any = localStorage.getItem('Users')!;
+    const dataArray = JSON.parse(localStorage.getItem('Users')!);
+    console.log(dataArray);
     return dataArray;
   }
+  // deleteUser(id: string){
+  //   return 
+  // }
 }

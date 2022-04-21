@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import * as alertify from 'alertifyjs';
 import { Router } from '@angular/router';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -22,8 +23,6 @@ export class RegisterComponent {
   today = new Date();
   url: string =
     'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?t=st=1650470203~exp=1650470803~hmac=49af70e25ab74f50bc4943f3711f9b99ab7f9266d34dc3083040cc30830c3c2c&w=826';
-
-  imageBase64: any;
 
   constructor(
     private FB: FormBuilder,
@@ -54,7 +53,6 @@ export class RegisterComponent {
 
   PostData(registerForm: any) {
     console.log(this.registerForm.value);
-    console.log(this.imageBase64);
     if (this.registerForm.valid) {
       this.userService.addUser(this.userData());
       alertify.success('Registeration Successful!');
@@ -77,10 +75,10 @@ export class RegisterComponent {
       gender: this.gender.value,
       dob: this.dob.value,
       about: this.about.value,
-      image: this.imageBase64,
+      image: this.image.value,
     });
   }
-
+//image conversion
   selectFile(event) {
     if (event.target.files) {
       let reader = new FileReader();
@@ -144,9 +142,9 @@ export class RegisterComponent {
     return this.registerForm.get('about') as FormControl;
   }
 
-  // get image() {
-  //   return this.registerForm.get('image') as FormControl;
-  // }
+  get image() {
+    return this.registerForm.get('image') as FormControl;
+  }
 
   ngOnInit(): void {}
 }

@@ -29,7 +29,6 @@ export class dataTable implements OnInit {
   paginator: MatPaginator;
   @ViewChild(MatSort)
   sort: MatSort;
-  posts = {};
 
   constructor(private post: PostService) {}
 
