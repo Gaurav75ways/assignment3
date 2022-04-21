@@ -16,6 +16,7 @@ import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { UserTableService } from './services/user-table.service';
 import { UserTableComponent } from './components/user-table/user-table.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,9 @@ import { UserTableComponent } from './components/user-table/user-table.component
     DashboardComponent,
     dataTable,
     UserTableComponent,
+    DialogComponent,
   ],
-  entryComponents: [],
+  entryComponents: [DialogComponent],
   imports: [
     FormsModule,
     BrowserModule,
