@@ -1,20 +1,20 @@
 .full-width-table {
   width: 100%;
 }
-.wrapper{
+.wrapper {
   display: flex;
   align-items: center;
   flex-direction: column;
   height: 100vh;
-  max-height:calc(80%);
+  max-height: calc(80%);
   position: absolute;
-    top: 50%;
-    left: 50%;
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }
-.pagination{
+.pagination {
   width: 100%;
 }
 .mat-row {

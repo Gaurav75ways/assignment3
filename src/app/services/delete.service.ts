@@ -1,16 +1,14 @@
-import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from "src/app/components/dialog/dialog.component"
+import { Injectable } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
+import { DialogComponent } from 'src/app/components/dialog/dialog.component'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DeleteService {
-
   constructor(private dialog: MatDialog) {}
 
-  openConfirmDialog(){
+  openConfirmDialog() {
     return this.dialog.open(DialogComponent, {})
   }
-
 }
