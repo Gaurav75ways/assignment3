@@ -27,25 +27,25 @@ export class RegisterComponent {
       {
         firstName: ['', [Validators.required]],
         lastName: ['', [Validators.required]],
-        email: ['', [Validators.required, Validators.email]],
+        email: ['', [
+          Validators.required
+        ]
+      ],
         password: [
           '',
           [
             Validators.required,
-            Validators.pattern(
-              '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{6,}',
-            ),
           ],
         ],
         confirmPassword: ['', [Validators.required]],
         website: ['', Validators.required],
         college: ['', Validators.required],
-        strength_A: [false],
-        strength_B: [false],
+        strength_A: [false, Validators.required],
+        strength_B: [false, Validators.required],
         gender: ['', Validators.required],
         dob: ['', Validators.required],
-        about: [''],
-        image: [''],
+        about: ['', Validators.required],
+        image: ['', Validators.required],
       },
       {
         validator: ConfirmedValidator('password', 'confirmPassword'),
@@ -80,6 +80,7 @@ export class RegisterComponent {
       image: this.image.value,
     })
   }
+  
   //image conversion
   selectFile(event) {
     if (event.target.files) {

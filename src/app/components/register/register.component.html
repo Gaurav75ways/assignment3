@@ -43,6 +43,7 @@
                   type="email"
                   matInput
                   placeholder="Enter your Email"
+                  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                 />
               </mat-form-field>
 
@@ -60,20 +61,16 @@
                     type="password"
                     matInput
                     placeholder="Enter your Password"
+                    pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])\S{8,}$"
                   />
                 </mat-form-field>
-                <div *ngIf="f['password'].touched && f['password'].invalid">
-                  <div
-                    *ngIf="
-                      f['password'].errors && f['password'].errors['required']
-                    "
-                  >
-                    Password must be 6 characters long and must include: <br />
-                    Lowercase letters<br />
-                    Uppercase letters<br />
-                    Numbers<br />
-                    Special characters<br />
-                  </div>
+                <div *ngIf="password&& password.invalid && password.touched">
+                    Password must be 8 characters long and must include: <br />
+                    At least one upper case English letter<br />
+                    At least one lower case English letter<br />
+                    At least one digit<br />
+                    At least one special character<br />
+                    No spaces
                 </div>
               </div>
 
@@ -125,6 +122,9 @@
                     />
                   </mat-card-actions>
                 </mat-card>
+                <div *ngIf="image && image.invalid && image.touched">
+                  Profile picture is required.
+              </div>
               </div>
             </div>
 
@@ -133,12 +133,16 @@
                 <mat-form-field>
                   <mat-label>Website</mat-label>
                   <input
-                    type="url"
+                    type="text"
                     matInput
                     placeholder="Enter website url"
                     formControlName="website"
+                    pattern="^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$"
                   />
                 </mat-form-field>
+                <div *ngIf="website && website.invalid && website.touched">
+                    Invalid URL
+                </div>
               </div>
 
               <div>
@@ -163,12 +167,18 @@
                 >
               </div>
 
-              <h3>Select gender</h3>
+              <div>
+                <h3>Select gender</h3>
               <mat-radio-group formControlName="gender">
                 <mat-radio-button value="Male">Male</mat-radio-button>
                 <mat-radio-button value="Female">Female</mat-radio-button>
                 <mat-radio-button value="Other">Other</mat-radio-button>
               </mat-radio-group>
+              <div *ngIf="gender && gender.invalid && gender.touched">
+                Please select an option
+            </div>
+              </div>
+
               <div>
                 <mat-form-field>
                   <mat-label>Choose your DOB</mat-label>
@@ -185,6 +195,10 @@
                   ></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
+
+                <div *ngIf="dob && dob.invalid && dob.touched">
+                  Date of birth is required.
+              </div>
               </div>
 
               <div>
@@ -196,6 +210,9 @@
                     placeholder="I am..."
                   ></textarea>
                 </mat-form-field>
+                <div *ngIf="about && about.invalid && about.touched">
+                  Please help us to know you better.
+              </div>
               </div>
             </div>
           </div>

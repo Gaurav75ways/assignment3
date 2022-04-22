@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'datatable', component: dataTable },
   { path: 'usertable', component: UserTableComponent },
+  { path: '**', redirectTo:"/" },
 ]
 
 @NgModule({
