@@ -10,11 +10,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PostService } from './table-data.service';
 import { dataTable } from './components/data-table/data-table.component';
-import { UserService } from './services/user.service';
-import { AuthService } from './services/auth.service';
-import { UserTableService } from './services/user-table.service';
+import { MainService } from './services/main.service';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 
@@ -39,7 +36,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [PostService, UserService, AuthService, UserTableService],
+  providers: [MainService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

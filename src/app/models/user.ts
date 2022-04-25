@@ -1,4 +1,5 @@
 export interface User {
+  image:string;
   firstName: string;
   lastName: string;
   email: string;
@@ -10,5 +11,4 @@ export interface User {
   gender: string;
   dob: Date;
   about: string;
-  image: any;
 }

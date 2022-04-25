@@ -1,8 +1,12 @@
-<div class="wrapper">
+  <div class="wrapper">
   <mat-card class="login-card">
     <mat-card-title> Register </mat-card-title>
 
-    <form [formGroup]="registerForm" (ngSubmit)="PostData(registerForm)">
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="PostData(registerForm)"
+      #form="ngForm"
+    >
       <div class="form-wrapper">
         <div>
           <div class="container">
@@ -17,10 +21,13 @@
                 />
               </mat-form-field>
               <br />
-              <span *ngIf="f['firstName'].touched && f['firstName'].invalid">
+              <mat-hint
+                style="color: rgb(255, 30, 30)"
+                *ngIf="f['firstName'].touched && f['firstName'].invalid"
+              >
                 Please enter a valid first name
-              </span>
-
+              </mat-hint>
+              <br />
               <mat-form-field>
                 <mat-label>Last Name</mat-label>
                 <input
@@ -31,10 +38,13 @@
                 />
               </mat-form-field>
               <br />
-              <span *ngIf="f['lastName'].touched && f['lastName'].invalid">
+              <mat-hint
+                style="color: rgb(255, 30, 30)"
+                *ngIf="f['lastName'].touched && f['lastName'].invalid"
+              >
                 Please enter a valid last name
-              </span>
-
+              </mat-hint>
+              <br />
               <mat-form-field>
                 <mat-label>Email</mat-label>
                 <input
@@ -44,14 +54,18 @@
                   matInput
                   placeholder="Enter your Email"
                   pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                  (blur)="checkDuplicate()"
                 />
               </mat-form-field>
 
               <br />
-              <span *ngIf="email && email.invalid && email.touched">
+              <mat-hint
+                style="color: rgb(255, 30, 30)"
+                *ngIf="f.email && f.email.invalid && f.email.touched"
+              >
                 Please enter a valid email
-              </span>
-
+              </mat-hint>
+              <br />
               <div class="form-group">
                 <mat-form-field>
                   <mat-label>Password</mat-label>
@@ -64,16 +78,20 @@
                     pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])\S{8,}$"
                   />
                 </mat-form-field>
-                <div *ngIf="password&& password.invalid && password.touched">
-                    Password must be 8 characters long and must include: <br />
-                    At least one upper case English letter<br />
-                    At least one lower case English letter<br />
-                    At least one digit<br />
-                    At least one special character<br />
-                    No spaces
-                </div>
+                <br />
+                <mat-hint
+                  style="color: rgb(255, 30, 30)"
+                  *ngIf="f.password && f.password.invalid && f.password.touched"
+                >
+                  Password must be 8 characters long and must include: <br />
+                  At least one upper case English letter<br />
+                  At least one lower case English letter<br />
+                  At least one digit<br />
+                  At least one special character<br />
+                  No spaces
+                </mat-hint>
               </div>
-
+              <br />
               <div class="form-froup">
                 <mat-form-field>
                   <mat-label>Confirm Password</mat-label>
@@ -90,22 +108,24 @@
                     f['confirmPassword'].touched && f['confirmPassword'].invalid
                   "
                 >
-                  <div
+                  <mat-hint
+                    style="color: rgb(255, 30, 30)"
                     *ngIf="
                       f['confirmPassword'].errors &&
                       f['confirmPassword'].errors['required']
                     "
                   >
                     Password is required.
-                  </div>
-                  <div
+                  </mat-hint>
+                  <mat-hint
+                    style="color: rgb(255, 30, 30)"
                     *ngIf="
                       f['confirmPassword'].errors &&
                       f['confirmPassword'].errors['ConfirmedValidator']
                     "
                   >
                     Password and confirmed password must match.
-                  </div>
+                  </mat-hint>
                 </div>
               </div>
 
@@ -122,9 +142,12 @@
                     />
                   </mat-card-actions>
                 </mat-card>
-                <div *ngIf="image && image.invalid && image.touched">
+                <mat-hint
+                  style="color: rgb(255, 30, 30)"
+                  *ngIf="f.image && f.image.invalid && f.image.touched"
+                >
                   Profile picture is required.
-              </div>
+                </mat-hint>
               </div>
             </div>
 
@@ -140,11 +163,15 @@
                     pattern="^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$"
                   />
                 </mat-form-field>
-                <div *ngIf="website && website.invalid && website.touched">
-                    Invalid URL
-                </div>
+                <br />
+                <mat-hint
+                  style="color: rgb(255, 30, 30)"
+                  *ngIf="f.website && f.website.invalid && f.website.touched"
+                >
+                  Invalid URL
+                </mat-hint>
               </div>
-
+              <br />
               <div>
                 <mat-form-field>
                   <mat-label>College</mat-label>
@@ -154,12 +181,18 @@
                     <mat-option value="College B">College B</mat-option>
                     <mat-option value="College C">College C</mat-option>
                   </mat-select>
-                </mat-form-field>
-              </div>
+                </mat-form-field><br />
+                <mat-hint
+                  style="color: rgb(255, 30, 30)"
+                  *ngIf="f.college && f.college.invalid && f.college.touched"
+                >
+                  Please select an option
+                </mat-hint>
+              </div><br />
 
               <div class="checkbox-div">
                 <h3>Select your strengths</h3>
-                <mat-checkbox formControlName="strength_A"
+                <mat-checkbox formControlName="strength_A" 
                   >Strength A</mat-checkbox
                 >
                 <mat-checkbox formControlName="strength_B"
@@ -169,19 +202,26 @@
 
               <div>
                 <h3>Select gender</h3>
-              <mat-radio-group formControlName="gender">
-                <mat-radio-button value="Male">Male</mat-radio-button>
-                <mat-radio-button value="Female">Female</mat-radio-button>
-                <mat-radio-button value="Other">Other</mat-radio-button>
-              </mat-radio-group>
-              <div *ngIf="gender && gender.invalid && gender.touched">
-                Please select an option
-            </div>
-              </div>
+                <mat-radio-group formControlName="gender">
+                  <mat-radio-button required value="Male"
+                    >Male</mat-radio-button
+                  >
+                  <mat-radio-button required value="Female"
+                    >Female</mat-radio-button
+                  >
+                  <mat-radio-button value="Other">Other</mat-radio-button>
+                </mat-radio-group><br />
+                <mat-hint
+                  style="color: rgb(255, 30, 30)"
+                  *ngIf="f.gender && f.gender.invalid && f.gender.touched"
+                >
+                  Please select an option
+                </mat-hint>
+              </div><br />
 
               <div>
                 <mat-form-field>
-                  <mat-label>Choose your DOB</mat-label>
+                  <mat-label>Date of Birth</mat-label>
                   <input
                     matInput
                     [max]="today"
@@ -195,11 +235,14 @@
                   ></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
-
-                <div *ngIf="dob && dob.invalid && dob.touched">
+                <br />
+                <mat-hint
+                  style="color: rgb(255, 30, 30)"
+                  *ngIf="f.dob && f.dob.invalid && f.dob.touched"
+                >
                   Date of birth is required.
-              </div>
-              </div>
+                </mat-hint>
+              </div><br />
 
               <div>
                 <mat-form-field>
@@ -210,10 +253,14 @@
                     placeholder="I am..."
                   ></textarea>
                 </mat-form-field>
-                <div *ngIf="about && about.invalid && about.touched">
-                  Please help us to know you better.
-              </div>
-              </div>
+                <br />
+                <mat-hint
+                  style="color: rgb(255, 30, 30)"
+                  *ngIf="f.about && f.about.invalid && f.about.touched"
+                >
+                  This field is required.
+                </mat-hint>
+              </div><br />
             </div>
           </div>
 
@@ -243,3 +290,4 @@
     </form>
   </mat-card>
 </div>
+<!-- [disabled]="form.form.invalid" -->
