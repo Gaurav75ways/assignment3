@@ -17,6 +17,8 @@ export class dataTable implements OnInit {
   dataArray: any = [];
   data: User;
 
+
+
   columns = [
     {
       columnDef: 'id',
@@ -110,9 +112,6 @@ export class dataTable implements OnInit {
   sort: MatSort;
 
   constructor(
-    // private mainService: PostService,
-    // private mainService: DeleteService,
-    // private mainService: UserTableService,
     private mainService: MainService
   ) {}
 

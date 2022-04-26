@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MainService } from 'src/app/services/main.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,15 +8,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {}
-
-  loggedin() {
-    return localStorage.getItem('token');
+  constructor(private router: Router, private mainService: MainService) {
+    
   }
-  onLogout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/']);
+
+  ngOnInit(): void {
   }
+  
+  // getDashData(){
+  //   console.log(this.mainService.dashData());
+  // }
+
+  // loggedin() {
+  //   return localStorage.getItem('token');
+  // }
+
+  // logoutUser(){
+  //   this.mainService.onLogout()
+  // }
 }

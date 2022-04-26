@@ -2,17 +2,27 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { dummy } from '../models/dummy';
 import { User } from '../models/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MainService {
-  constructor(private http: HttpClient, private dialog: MatDialog) {}
 
+export class MainService {
+  constructor(private http: HttpClient, private dialog: MatDialog, private router: Router,) {}
+
+  // currUser:any;
+
+  // getCurrUser(email){
+  //   this.currUser = email;
+  //   console.log(this.currUser);
+  // }
+
+  //login
   authUser(user: any) {
     let UserArray: Array<any> = [];
     if (localStorage.getItem('Users')) {
@@ -21,6 +31,12 @@ export class MainService {
     return UserArray.find(
       (p) => p.userName === user.userName && p.password === user.password
     );
+  }
+
+  //logout
+  onLogout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/']);
   }
 
   //confirm delete
@@ -34,6 +50,7 @@ export class MainService {
   getPostData(): Observable<dummy[]> {
     return this.http.get<dummy[]>(this.url);
   }
+
   deleteRow(id: any) {
     return this.http.delete(`${this.url}/${id}`);
   }
@@ -66,4 +83,15 @@ export class MainService {
     }
     localStorage.setItem('Users', JSON.stringify(users));
   }
+
+  //get dashboard data
+  // dashData() {
+  //   const dataArray = JSON.parse(localStorage.getItem('Users')!);
+  //   for (let i = 0; i < dataArray.length; i++) {
+  //     if (dataArray[i].email == this.currUser) {
+  //       return dataArray[i];
+  //     }
+  //   }
+  //   return false;
+  // }
 }

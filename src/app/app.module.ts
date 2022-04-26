@@ -14,6 +14,8 @@ import { dataTable } from './components/data-table/data-table.component';
 import { MainService } from './services/main.service';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { UserDashComponent } from './components/lazy/user-dash/user-dash.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { DialogComponent } from './components/dialog/dialog.component';
     dataTable,
     UserTableComponent,
     DialogComponent,
+    NavbarComponent,
+    UserDashComponent,
   ],
   entryComponents: [DialogComponent],
   imports: [

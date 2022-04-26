@@ -1,4 +1,4 @@
-import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as alertify from 'alertifyjs';
@@ -9,8 +9,9 @@ import { MainService } from 'src/app/services/main.service';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
 })
+
 export class LoginFormComponent implements OnInit {
-  constructor(private mainService: MainService, private router: Router,private viewContainerRef: ViewContainerRef, private cfr: ComponentFactoryResolver) {}
+  constructor(private mainService: MainService, private router: Router) {}
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
@@ -20,6 +21,7 @@ export class LoginFormComponent implements OnInit {
     const token = this.mainService.authUser(this.loginForm.value);
     if (token) {
       localStorage.setItem('token', token.email);
+      // this.mainService.currUser()
       alertify.success('Login Successful');
       this.router.navigate(['dashboard']);
     } else {
@@ -34,7 +36,6 @@ export class LoginFormComponent implements OnInit {
   get passwordValidator() {
     return this.loginForm.get('password') as FormControl;
   }
-
 
   ngOnInit(): void {}
 }

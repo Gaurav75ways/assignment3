@@ -1,0 +1,24 @@
+<mat-toolbar>
+    <div class="button-group">
+        <div>
+            <a routerLink="/usertable" *ngIf="loggedin()">
+              <button mat-raised-button color="primary">User Table</button>
+            </a>
+          </div>
+          <div>
+            <a routerLink="/datatable" *ngIf="loggedin()">
+              <button mat-raised-button color="primary">Dummy Table</button>
+            </a>
+          </div>
+            <div *ngIf="!loggedin()" >
+            <a routerLink="/register-form" >
+              <button mat-raised-button color="primary" >Register</button>
+            </a>
+          </div>
+            <div *ngIf="loggedin()">
+            <button mat-raised-button color="primary" (click)="logoutUser()" >
+              Logout
+            </button>
+          </div>
+    </div>
+</mat-toolbar>
